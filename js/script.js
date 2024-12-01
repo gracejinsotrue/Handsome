@@ -84,7 +84,7 @@ monogatari.characters({
 	},
 	'Cee': {
 		name: 'Cee',
-		color: '#5bcaff',
+		color: '#070792',
 		sprites: {
 			normal: 'c.png'
 		}
@@ -92,19 +92,28 @@ monogatari.characters({
 	},
 	'Peethon': {
 		name: 'Peethon',
-		color: '#5bcaff',
+		color: '#137886',
 		sprites: {
 			normal: 'peethon.png',
 			think: 'peethon_think.png'
-
-		}
+		},
 	},
+
 	'Windoe': {
 		name: 'Windoe',
 		color: '#5bcaff',
 		sprites: {
 			normal: 'windows.png',
-			hand: 'windows_hand.png'
+			hand: 'windows_hand.png',
+			blush: 'windows_blush.png'
+		}
+	},
+	'L*nux': {
+		name: 'L*nux',
+		color: '#973602',
+		sprites: {
+			normal: 'linux.png',
+			arms: 'linux_arms_folded.png'
 		}
 	},
 	'you': {
@@ -143,19 +152,16 @@ monogatari.script({
 			} // End of 'Input' object
 		},
 
-		'y Hi {{player.name}}! Welcome to your new hell!',
 		'jump NewScene' // Automatically jump to the 'NewScene' after input
 	],
 
 	'NewScene': [
-
 
 		'show scene office_background with fadeIn',
 		'show character Peethon normal at center with fadeIn',
 
 		'Peethon GOOD MORNING!! My dear intern has awoken!',
 		'you h-huh?',
-
 
 		// Fade out Peethon before Windoe appears
 		'hide character Peethon',
@@ -171,39 +177,45 @@ monogatari.script({
 
 		'you ah.. WHAT IS GOING ON?',
 
+		'show character Windoe normal',
+
 		"Windoe:hand You look like you are about to faint. Make sure you are back on your feet before today's PR review.",
 
-		'you uwah... what the hell. I just want a normal life...',
+		'you Uwah... what the hell. I just want a normal life...',
+		//i want to add some murmuring audio here
 
-		'y What would you like to do next?',
-		{
-			'Choice': {
-				'Dialog': 'y Keep Listening to this Insanity or Run Away?',
-				'Continue': {
-					'Text': 'Keep Listening',
-					'Do': 'jump Yes'
-				},
-				'End': {
-					'Text': 'Run Away',
-					'Do': 'end'
-				}
-			} // End of 'Choice' object
-		}
+		'jump NewScene1'
+
 	],
 
-	'Yes': [
+	'NewScene1': [
 		'show scene office_background',
 
-		'you (thinking) bro...i just want to go home',
-		"you hahaha... so, what's the deal with this? One moment I was at my cubicle at Am*zon, and all of a sudden I am here.",
 
-		'show character Peethon think at center with fadeIn',
-		"Peethon Am*zon huh...I think Linux's worked there in the past.",
-		'you huh? Why is bro named after an operating system...',
 
-		'Peethon think think nothing of it.',
+		'you (thinking) Ha ha...i just want to go home',
+		"you Hahaha... so, what's the deal with this? One moment I was at my cubicle at Am*zon, and all of a sudden I am here.",
 
+		'show character Peethon think at center',
+		"Peethon Am*zon huh...I think L*nux's worked there in the past.",
+		"you Huh? Who? Why does that sound like the name of an operating system...",
+
+		'Peethon think nothing of it.',
+		//animation doesn't work
+
+		'animate character Peethon to 20% in 1s ease-in-out',
+		'show character L*nux arms at right class="slide_to_right"',
+
+
+		'L*nux You called?',
+
+		'hide character L*nux',
 		'hide character Peethon',
+
+		'show character Windoe blush',
+
+		'Windoe O-oh, we were just talking about you, sir! Think nothing of it!',
+
 		'show character Windoe normal',
 
 		'Windoe You ready to start your tasks?',
@@ -225,3 +237,17 @@ monogatari.script({
 		'end'
 	]
 });
+
+// //'y What would you like to do next?',
+// {
+// 	'Choice': {
+// 		'Dialog': 'y Keep Listening to this Insanity or Run Away?',
+// 		'Continue': {
+// 			'Text': 'Keep Listening',
+// 			'Do': 'jump Yes'
+// 		},
+// 		'End': {
+// 			'Text': 'Run Away',
+// 			'Do': 'end'
+// 		}
+// 	} // End of 'Choice' object
